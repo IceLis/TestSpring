@@ -17,8 +17,12 @@ public class ControllerGoods {
     private RepositoryGoods repositoryGoods;
 
     @GetMapping("/pg")
-    public String getPage()
+    public String getPage(Map<String, Object> model)
     {
+
+        Collection<EntityGoods> allGoods = repositoryGoods.findAll();
+        model.put("allGoods", allGoods);
+
         return "page";
     }
 
@@ -37,7 +41,6 @@ public class ControllerGoods {
         this.repositoryGoods.save(goods);
 
         Collection<EntityGoods> allGoods = repositoryGoods.findAll();
-
         model.put("allGoods", allGoods);
 
 
